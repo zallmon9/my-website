@@ -41,68 +41,15 @@
 
 <button class="btn-submit w-100" onclick="submitEval()">ส่งแบบประเมิน</button>
 
-<div id="resultBox" class="mt-5 d-none">
+<div id="resultBox" class="d-none mt-5">
     <h4 class="text-center mb-3">ผลการประเมิน</h4>
-    <canvas id="resultChart" height="200"></canvas>
+    <div style="height:300px">
+        <canvas id="resultChart"></canvas>
+    </div>
 </div>
 
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-const table = document.getElementById("questionTable");
-
-const questions = [
-    "อาจารย์เตรียมการสอนเป็นอย่างดี",
-    "อธิบายเนื้อหาเข้าใจง่าย",
-    "เปิดโอกาสให้นักศึกษาซักถาม",
-    "ใช้สื่อการสอนเหมาะสม",
-    "สร้างบรรยากาศการเรียนที่ดี"
-];
-
-questions.forEach((q,i)=>{
-    table.innerHTML += `
-    <tr>
-        <td>${i+1}</td>
-        <td class="text-start">${q}</td>
-        <td>
-            ${[1,2,3,4,5].map(n=>`
-                <input type="radio" name="q${i}" value="${n}" class="rating-radio" id="q${i}_${n}">
-                <label for="q${i}_${n}" class="rating-label">${n}</label>
-            `).join("")}
-        </td>
-    </tr>`;
-});
-
-window.submitEval = function(){
-    let scores=[];
-    for(let i=0;i<questions.length;i++){
-        let c=document.querySelector(`input[name="q${i}"]:checked`);
-        if(!c){ alert("กรุณาประเมินให้ครบทุกข้อ"); return; }
-        scores.push(+c.value);
-    }
-
-    document.getElementById("resultBox").classList.remove("d-none");
-
-    new Chart(document.getElementById("resultChart"),{
-        type:'bar',
-        data:{
-            labels:questions.map((_,i)=>`ข้อ ${i+1}`),
-            datasets:[{
-                data:scores,
-                backgroundColor:"#4caf50"
-            }]
-        },
-        options:{
-            scales:{ y:{ beginAtZero:true, max:5 } },
-            plugins:{ legend:{ display:false } }
-        }
-    });
-}
-
-});
-</script>
-
+<script src="js/script.js"></script>
 </body>
 </html>
