@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFfTy5rkT4v10U-hleVHysERaZw-TQUavIIGO9XAtZ6nQllrRYPtDi21Cm-BXsbCW-Jw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEs_RdNYWr36g92xl71ECQCS-vIc3hNPmUuhOnNVya/dev";
 
 const questions = [
     "อาจารย์เตรียมการสอนเป็นอย่างดี",
@@ -13,7 +13,7 @@ const questions = [
     "เอาใจใส่นักศึกษา"
 ];
 
-const table = document.getElementById("12UNgAZC7oksFzgY-qqjfzVJC-C5XIbS7Hdx0q24XYXM");
+const table = document.getElementById("AKfycbxEs_RdNYWr36g92xl71ECQCS-vIc3hNPmUuhOnNVya");
 
 questions.forEach((q,i)=>{
     table.innerHTML += `
