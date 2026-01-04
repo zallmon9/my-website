@@ -26,17 +26,20 @@
 </div>
 
 <!-- ตารางคำถาม -->
-<table class="table table-bordered align-middle text-center">
-<thead class="table-success">
-<tr>
-    <th>ข้อ</th>
-    <th class="text-start">คำถาม</th>
-    <th colspan="5">คะแนน</th>
-</tr>
-</thead>
-<tbody id="questionTable"></tbody>
+<table class="table table-bordered text-center align-middle">
+    <thead class="table-success">
+        <tr>
+            <th style="width:60px">ข้อ</th>
+            <th>คำถาม</th>
+            <th style="width:300px">คะแนน</th>
+        </tr>
+    </thead>
+    <tbody id="questionTable"></tbody>
 </table>
 
+<div id="resultBox" class="d-none mt-4">
+    <canvas id="resultChart" height="120"></canvas>
+</div>
 <!-- ข้อเสนอแนะ -->
 <div class="mb-4">
     <label class="fw-bold">ข้อเสนอแนะเพิ่มเติม</label>
