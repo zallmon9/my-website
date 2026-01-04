@@ -1,1 +1,57 @@
+body {
+    background:#f0f4f8;
+    font-family: 'Prompt', sans-serif;
+}
+
+/* ปุ่มคะแนน */
+.rating-radio { display:none; }
+
+.rating-label {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:inline-block;
+    cursor:pointer;
+    margin:0 4px;
+    transition:0.3s;
+    position:relative;
+}
+
+[data-score="1"]{background:#ff5252;}
+[data-score="2"]{background:#ff9800;}
+[data-score="3"]{background:#ffeb3b;}
+[data-score="4"]{background:#8bc34a;}
+[data-score="5"]{background:#4caf50;}
+
+.rating-label:hover{
+    transform:scale(1.2);
+    box-shadow:0 0 10px rgba(0,0,0,.3);
+}
+
+.rating-radio:checked + .rating-label::after{
+    content:'✔';
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* ปุ่มส่ง */
+.btn-submit{
+    background:linear-gradient(45deg,#4caf50,#81c784);
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    transition:.4s;
+}
+.btn-submit:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 12px 25px rgba(0,0,0,.3);
+}
 
