@@ -1,4 +1,4 @@
-const SCRIPT_URL = "ใส่_URL_จาก_Google_Apps_Script_ตรงนี้";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCiFiz0tsGL2GYN9Z7Z0iGQGj-0BEe0jsRpF1dkDxKOW4wV3swyd-ukldebOrHCGqJ0w/exec";
 
 const questions = [
     "อาจารย์เตรียมการสอนเป็นอย่างดี",
