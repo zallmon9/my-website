@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/u/0/home/projects/1h4ziFqDClO821mUvp1i--qbIUJctoj6R2FR9SRbDyFHft7RupleN71d2/edit";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFfTy5rkT4v10U-hleVHysERaZw-TQUavIIGO9XAtZ6nQllrRYPtDi21Cm-BXsbCW-Jw/exec";
 
 const questions = [
     "อาจารย์เตรียมการสอนเป็นอย่างดี",
