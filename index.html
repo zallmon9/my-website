@@ -3,53 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <title>แบบประเมินการสอน</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+table { width:100%; border-collapse:collapse; }
+th,td { border:1px solid #ccc; padding:8px; text-align:center; }
+.rating input { margin:0 3px; }
+button { padding:10px 20px; margin-top:15px; }
+</style>
 </head>
-
 <body>
-<div class="container mt-5 mb-5">
 
-<h2 class="text-center mb-4">แบบประเมินการสอน</h2>
+<h2 align="center">แบบประเมินการสอน</h2>
 
-<div class="mb-4">
-    <label class="fw-bold">อาจารย์ผู้สอน</label>
-    <select class="form-select" id="teacher">
-        <option value="">-- เลือกอาจารย์ --</option>
-        <option>อ.สมชาย</option>
-        <option>อ.สมหญิง</option>
-    </select>
-</div>
+<select id="teacher">
+  <option value="">-- เลือกอาจารย์ --</option>
+  <option>อาจารย์ ก</option>
+  <option>อาจารย์ ข</option>
+  <option>อาจารย์ ค</option>
+</select>
 
-<table class="table table-bordered text-center align-middle">
-    <thead class="table-success">
-        <tr>
-            <th style="width:60px">ข้อ</th>
-            <th>คำถาม</th>
-            <th style="width:300px">คะแนน</th>
-        </tr>
-    </thead>
-    <tbody id="questionTable"></tbody>
+<table>
+<tr>
+<th>ข้อ</th>
+<th>คำถาม</th>
+<th>คะแนน (1–5)</th>
+</tr>
+
+<tbody id="questionTable"></tbody>
 </table>
 
-<div class="mb-4">
-    <label class="fw-bold">ข้อเสนอแนะเพิ่มเติม</label>
-    <textarea id="comment" class="form-control" rows="3"></textarea>
-</div>
+<br>
+<textarea id="comment" placeholder="ข้อเสนอแนะเพิ่มเติม" style="width:100%;height:80px;"></textarea>
 
-<button class="btn-submit w-100" onclick="submitEval()">ส่งแบบประเมิน</button>
+<br><br>
+<button onclick="submitEval()">ส่งแบบประเมิน</button>
 
-<div id="resultBox" class="d-none mt-5">
-    <h4 class="text-center mb-3">ผลการประเมิน</h4>
-    <div style="height:300px">
-        <canvas id="resultChart"></canvas>
-    </div>
-</div>
+<p id="msg"></p>
 
-</div>
+<script>
+const SCRIPT_URL = "PUT_WEB_APP_URL_HERE";
 
-<script src="js/script.js"></script>
+const questions = [
+    "อาจารย์เตรียมการสอนเป็นอย่างดี",
+    "อธิบายเนื้อหาเข้าใจง่าย",
+    "เปิดโอกาสให้นักศึกษาซักถาม",
+    "ใช้สื่อการสอนเหมาะสม",
+    "สร้างบรรยากาศการเรียนที่ดี",
+    "ตรงต่อเวลา",
+    "มีความเป็นธรรมในการให้คะแนน",
+    "เชื่อมโยงเนื้อหากับการใช้งานจริง",
+    "ให้คำแนะนำที่เป็นประโยชน์",
+    "เอาใจใส่นักศึกษา"
+];
+
+const table = document.getElementById("questionTable");
+
+questions.forEach((q,i)=>{
+  let radios = "";
+  for(let n=1;n<=5;n++){
+    radios += `<label>
+      <input type="radio" name="q${i}" value="${n}"> ${n}
+    </label>`;
+  }
+
+  table.innerHTML += `
+  <tr>
+    <td>${i+1}</td>
+    <td align="left">${q}</td>
+    <td class="rating">${radios}</td>
+  </tr>`;
+});
+
+function submitEval(){
+  const teacher = document.getElementById("teacher").value;
+  if(!teacher){ alert("กรุณาเลือกอาจารย์"); return; }
+
+  let scores = [];
+  for(let i=0;i<10;i++){
+    const checked = document.querySelector(`input[name="q${i}"]:checked`);
+    if(!checked){ alert("กรุณาประเมินให้ครบทุกข้อ"); return; }
+    scores.push(Number(checked.value));
+  }
+
+  const data = {
+    teacher: teacher,
+    scores: scores,
+    comment: document.getElementById("comment").value
+  };
+
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    body: JSON.stringify(data)
+  })
+  .then(res=>res.json())
+  .then(()=>{
+    document.getElementById("msg").innerHTML =
+      "✅ ส่งแบบประเมินเรียบร้อยแล้ว";
+  });
+}
+</script>
+
 </body>
 </html>
