@@ -13,7 +13,7 @@ const questions = [
     "เอาใจใส่นักศึกษา"
 ];
 
-const table = document.getElementById("questionTable");
+const table = document.getElementById("12UNgAZC7oksFzgY-qqjfzVJC-C5XIbS7Hdx0q24XYXM");
 
 questions.forEach((q,i)=>{
     table.innerHTML += `
